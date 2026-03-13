@@ -221,9 +221,10 @@
             navOrder.forEach((key, i) => {
                 const btnNum = i + 1;
                 const isGuest = key === 'guest';
+                // Vertical centering applied via min-h-[80px] and flex flex-col justify-center
                 nav.innerHTML += `
-                    <button id="nav-btn-${key}" onclick="updateView('${key}')" class="w-full text-left px-5 py-4 rounded-lg border-l-4 border-transparent hover:bg-white/5 transition-all group relative ${isGuest ? 'bg-white/5 border-l-gpc-blue' : ''}">
-                        <div class="flex items-center justify-between mb-2">
+                    <button id="nav-btn-${key}" onclick="updateView('${key}')" class="w-full text-left px-5 py-4 rounded-lg border-l-4 border-transparent hover:bg-white/5 transition-all group relative flex flex-col justify-center min-h-[80px] ${isGuest ? 'bg-white/5 border-l-gpc-blue' : ''}">
+                        <div class="flex items-center justify-between mb-1 w-full">
                             <span class="text-[10px] font-bold tracking-widest uppercase text-slate-400 group-hover:text-slate-300">${isGuest ? 'CUSTOM BRIEFING' : ''}</span>
                             <div class="w-6 h-6 rounded-full border border-slate-600 flex items-center justify-center text-[10px] text-slate-400 group-hover:border-slate-400 group-hover:text-slate-300 font-semibold ml-auto">${btnNum}</div>
                         </div>
@@ -280,8 +281,20 @@
         function renderHTMLContent(viewId, container) {
             let html = '';
             
-            if (viewId === 'products' && pageContent.products) {
-                // Using 3 columns as requested
+            if (viewId === 'data-centers' && pageContent['data-centers']) {
+                html += '<div class="grid grid-cols-3 gap-6 w-full max-w-6xl mx-auto content-start fade-in pt-8">';
+                pageContent['data-centers'].forEach(dc => {
+                    html += `
+                        <div class="group relative p-6 border border-slate-200 rounded-xl bg-white hover:bg-gpc-navy transition-colors duration-300 shadow-sm hover:shadow-xl overflow-hidden cursor-default">
+                            <div class="absolute inset-0 bg-gpc-blue opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                            <span class="text-xs font-bold text-slate-400 group-hover:text-gpc-orange transition-colors uppercase tracking-widest block mb-2">${dc.city}</span>
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-white group-hover:scale-110 transform origin-left transition-all duration-300">${dc.name}</h3>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+            else if (viewId === 'products' && pageContent.products) {
                 html += '<div class="grid grid-cols-3 gap-8 w-full h-full content-center fade-in max-w-6xl mx-auto">';
                 pageContent.products.forEach(p => {
                     html += `

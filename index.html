@@ -281,13 +281,14 @@
             let html = '';
             
             if (viewId === 'data-centers' && pageContent['data-centers']) {
-                html += '<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 w-full max-w-7xl mx-auto content-start fade-in">';
+                // Expanded to 5 columns and tightened padding/text sizes to fit the density
+                html += '<div class="grid grid-cols-5 gap-4 w-full max-w-7xl mx-auto content-start fade-in pt-4 pb-8">';
                 pageContent['data-centers'].forEach(dc => {
                     html += `
-                        <div class="group relative p-5 border border-slate-200 rounded-xl bg-white hover:bg-gpc-navy transition-colors duration-300 shadow-sm hover:shadow-xl overflow-hidden cursor-default flex flex-col justify-center min-h-[100px]">
+                        <div class="group relative p-4 border border-slate-200 rounded-xl bg-white hover:bg-gpc-navy transition-colors duration-300 shadow-sm hover:shadow-xl overflow-hidden cursor-default flex flex-col justify-center min-h-[90px]">
                             <div class="absolute inset-0 bg-gpc-blue opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                            <span class="text-[10px] font-bold text-slate-400 group-hover:text-gpc-orange transition-colors uppercase tracking-widest block mb-1 z-10 relative">${dc.city}</span>
-                            <h3 class="text-base font-bold text-slate-800 group-hover:text-white group-hover:scale-105 transform origin-left transition-all duration-300 z-10 relative">${dc.name}</h3>
+                            <span class="text-[9px] font-bold text-slate-400 group-hover:text-gpc-orange transition-colors uppercase tracking-widest block mb-1 z-10 relative">${dc.city}</span>
+                            <h3 class="text-sm font-bold text-slate-800 group-hover:text-white group-hover:scale-105 transform origin-left transition-all duration-300 z-10 relative leading-tight">${dc.name}</h3>
                         </div>
                     `;
                 });

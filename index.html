@@ -294,19 +294,25 @@
                 });
                 html += '</div>';
             }
-            else if (viewId === 'products' && pageContent.products) {
+          else if (viewId === 'products' && pageContent.products) {
                 html += '<div class="grid grid-cols-3 gap-8 w-full h-full content-center fade-in max-w-6xl mx-auto">';
                 pageContent.products.forEach(p => {
                     html += `
-                        <div class="bg-white border border-slate-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <svg class="w-8 h-8 text-gpc-blue mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${p.icon}"></path></svg>
-                            <h3 class="text-lg font-bold text-slate-800 mb-2">${p.title}</h3>
-                            <p class="text-sm text-slate-500 leading-relaxed">${p.desc}</p>
+                        <div class="group relative p-6 border border-slate-200 rounded-xl bg-white hover:bg-gpc-navy transition-colors duration-300 shadow-sm hover:shadow-xl overflow-hidden cursor-default flex flex-col">
+                            <div class="absolute inset-0 bg-gpc-blue opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                            
+                            <svg class="w-8 h-8 text-gpc-blue group-hover:text-gpc-orange transition-colors duration-300 mb-4 z-10 relative" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${p.icon}"></path>
+                            </svg>
+                            
+                            <h3 class="text-lg font-bold text-slate-800 group-hover:text-white group-hover:scale-105 transform origin-left transition-all duration-300 mb-2 z-10 relative">${p.title}</h3>
+                            
+                            <p class="text-sm text-slate-500 group-hover:text-slate-300 transition-colors duration-300 leading-relaxed z-10 relative">${p.desc}</p>
                         </div>
                     `;
                 });
                 html += '</div>';
-            } 
+            }
             else if (viewId === 'why-gpc' && pageContent['why-gpc']) {
                 html += `
                     <div class="flex flex-col w-full h-full max-w-5xl mx-auto fade-in pt-4">

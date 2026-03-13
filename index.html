@@ -115,12 +115,10 @@
             <div class="w-full h-full bg-white border border-gpc-border rounded-2xl shadow-elegant relative overflow-hidden flex">
                 
                 <div id="map-layer" class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 bg-slate-50 z-0">
-                    
                     <img id="map-image" src="" alt="Network Map" class="w-full h-full object-contain hidden p-4">
-                    
                     <div id="map-fallback" class="text-center pointer-events-none">
                         <svg class="w-20 h-20 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-                        <h3 class="text-xl font-semibold text-slate-600 uppercase tracking-wide" id="placeholder-text">Missing Map Asset</h3>
+                        <h3 class="text-xl font-semibold text-slate-600 uppercase tracking-wide" id="placeholder-text">Waiting for Data</h3>
                     </div>
                 </div>
 
@@ -219,7 +217,7 @@
             }
         }
 
-   // --- DOM MANIPULATION ---
+        // --- DOM MANIPULATION ---
         function buildNavigation() {
             const nav = document.getElementById('nav-menu');
             nav.innerHTML = '';
@@ -264,7 +262,7 @@
             const mapControls = document.getElementById('map-controls');
             const drawControls = document.getElementById('draw-controls');
 
-         if (data.type === 'map') {
+            if (data.type === 'map') {
                 htmlLayer.classList.add('hidden');
                 mapLayer.classList.remove('hidden');
                 mapControls.classList.remove('opacity-0', 'pointer-events-none');
@@ -285,6 +283,16 @@
                     document.getElementById('placeholder-text').innerText = `Missing: ${data.id} asset`;
                 }
             } else {
+                mapLayer.classList.add('hidden');
+                mapControls.classList.add('opacity-0', 'pointer-events-none');
+                drawControls.classList.add('hidden'); 
+                
+                if (drawMode) toggleDrawing();
+
+                htmlLayer.classList.remove('hidden');
+                renderHTMLContent(viewId, htmlLayer);
+            }
+        }
 
         // --- HTML CONTENT RENDERER ---
         function renderHTMLContent(viewId, container) {
@@ -304,7 +312,7 @@
                 });
                 html += '</div>';
             }
-          else if (viewId === 'products' && pageContent.products) {
+            else if (viewId === 'products' && pageContent.products) {
                 html += '<div class="grid grid-cols-3 gap-8 w-full h-full content-center fade-in max-w-6xl mx-auto">';
                 pageContent.products.forEach(p => {
                     html += `
@@ -322,7 +330,7 @@
                     `;
                 });
                 html += '</div>';
-            }
+            } 
             else if (viewId === 'why-gpc' && pageContent['why-gpc']) {
                 // Scaled up to max-w-6xl, larger text, larger icons, wider gaps
                 html += `

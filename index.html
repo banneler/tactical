@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPC Tactical Map Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gpc: {
+                            navy: '#0f172a', // Dark slate/navy for background
+                            blue: '#1d4ed8', // Core blue accents
+                            green: '#84cc16', // Fiber route green
+                            orange: '#f97316', // 400G / Highlight orange
+                            panel: '#1e293b' // Slightly lighter panel color
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide cursor for strict touch/kiosk mode */
+        /* body { cursor: none; } */
+        
+        .map-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Glowing effect for active fiber routes / buttons */
+        .glow-active {
+            box-shadow: 0 0 15px rgba(132, 204, 22, 0.4);
+            border-color: #84cc16;
+        }
+        
+        /* Smooth transitions for view switching */
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gpc-navy text-slate-200 h-screen w-screen overflow-hidden flex select-none font-sans">
+
+    <aside class="w-80 bg-gpc-panel border-r border-slate-700 flex flex-col z-20 shadow-2xl">
+        <div class="p-6 border-b border-slate-700 bg-slate-900">
+            <h1 class="text-2xl font-black tracking-tight text-white mb-1">GREAT PLAINS</h1>
+            <h2 class="text-sm font-bold tracking-widest text-gpc-orange uppercase">Communications</h2>
+            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1 bg-gpc-blue/20 border border-gpc-blue/50 rounded-full">
+                <div class="w-2 h-2 rounded-full bg-gpc-green animate-pulse"></div>
+                <span class="text-xs font-mono text-gpc-blue font-bold">UNIFIED REACH KIOSK</span>
+            </div>
+        </div>
+
+        <nav class="flex-1 p-4 flex flex-col gap-3 overflow-y-auto" id="nav-menu">
+            </nav>
+
+        <div class="p-4 border-t border-slate-700 bg-slate-900 flex justify-between items-center text-xs font-mono text-slate-400">
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-gpc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <span>SYS: ONLINE</span>
+            </div>
+            <div id="clock">00:00:00</div>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col relative bg-slate-950 map-grid-bg">
+        
+        <header class="h-20 border-b border-slate-800 bg-gpc-navy/80 backdrop-blur flex items-center justify-between px-8 z-10">
+            <div>
+                <h2 id="view-title" class="text-3xl font-bold text-white tracking-tight fade-in">National Footprint</h2>
+                <p id="view-subtitle" class="text-sm text-slate-400 font-mono mt-1 fade-in">13 States | 19,000+ Miles</p>
+            </div>
+            
+            <div id="stats-container" class="flex gap-6 fade-in">
+                </div>
+        </header>
+
+        <section class="flex-1 relative overflow-hidden flex items-center justify-center p-8">
+            
+            <div id="map-visualizer" class="w-full h-full border-2 border-slate-800 rounded-xl bg-slate-900/50 flex flex-col items-center justify-center shadow-2xl relative fade-in transition-all duration-500">
+                
+                <svg class="w-64 h-64 text-slate-700 mb-6 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                </svg>
+                <h3 class="text-2xl font-bold text-slate-500 tracking-widest uppercase" id="placeholder-text">LOAD NATIONAL MAP VECTOR</h3>
+                <p class="text-slate-600 font-mono mt-2">Insert SVGs in showMap() function</p>
+
+                <div class="absolute top-1/4 left-1/4 w-3 h-3 bg-gpc-green rounded-full shadow-[0_0_20px_#84cc16] animate-ping"></div>
+                <div class="absolute bottom-1/3 right-1/3 w-4 h-4 bg-gpc-orange rounded-full shadow-[0_0_20px_#f97316]"></div>
+            </div>
+
+            <div class="absolute right-8 top-8 flex flex-col gap-3 z-10">
+                <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-3 backdrop-blur shadow-xl">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b border-slate-700 pb-2">Map Layers</h4>
+                    
+                    <label class="flex items-center gap-3 mb-3 cursor-pointer group">
+                        <div class="relative">
+                            <input type="checkbox" checked class="sr-only peer" onchange="toggleLayer('lit')">
+                            <div class="w-10 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gpc-green"></div>
+                        </div>
+                        <span class="text-sm font-medium text-slate-300 group-hover:text-white">Lit Fiber</span>
+                    </label>
+
+                    <label class="flex items-center gap-3 mb-3 cursor-pointer group">
+                        <div class="relative">
+                            <input type="checkbox" checked class="sr-only peer" onchange="toggleLayer('400g')">
+                            <div class="w-10 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gpc-orange"></div>
+                        </div>
+                        <span class="text-sm font-medium text-slate-300 group-hover:text-white">400G Routes</span>
+                    </label>
+
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <div class="relative">
+                            <input type="checkbox" checked class="sr-only peer" onchange="toggleLayer('data-centers')">
+                            <div class="w-10 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gpc-blue"></div>
+                        </div>
+                        <span class="text-sm font-medium text-slate-300 group-hover:text-white">Data Centers</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- DATA STRUCTURE based on PDF Map Book ---
+        const mapData = {
+            'national': {
+                id: 'national',
+                title: 'The Network',
+                subtitle: 'National Footprint & Coverages',
+                placeholder: 'LOAD NATIONAL.SVG',
+                stats: [
+                    { label: 'Fiber Miles', value: '19,000+', color: 'text-gpc-green' },
+                    { label: 'States', value: '13', color: 'text-white' },
+                    { label: 'Data Centers', value: '25+', color: 'text-gpc-blue' },
+                    { label: 'Standard', value: '400 Gbps', color: 'text-gpc-orange' }
+                ]
+            },
+            'layer2': {
+                id: 'layer2',
+                title: 'Layer 2 Core',
+                subtitle: 'High-Availability Rings 0-12',
+                placeholder: 'LOAD LAYER_2_RINGS.SVG',
+                stats: [
+                    { label: 'Architecture', value: 'Redundant Ring', color: 'text-gpc-green' },
+                    { label: 'City-to-City', value: '200G/400G', color: 'text-gpc-orange' },
+                    { label: 'Services', value: '10/100/100G', color: 'text-white' }
+                ]
+            },
+            'nebraska': {
+                id: 'nebraska',
+                title: 'Nebraska Deep Dive',
+                subtitle: 'Statewide Infrastructure Focus',
+                placeholder: 'LOAD NEBRASKA_STATE.SVG',
+                stats: [
+                    { label: 'State Fiber Miles', value: '10,000+', color: 'text-gpc-green' },
+                    { label: 'Communities', value: '163', color: 'text-white' },
+                    { label: 'Omaha Metro', value: '500+ Miles', color: 'text-gpc-blue' }
+                ]
+            },
+            'omaha-metro': {
+                id: 'omaha-metro',
+                title: 'Omaha / Council Bluffs',
+                subtitle: 'Metro Area Street Level',
+                placeholder: 'LOAD OMAHA_METRO.SVG',
+                stats: [
+                    { label: 'Bypass', value: 'Unique Routes', color: 'text-gpc-green' },
+                    { label: 'Key DC', value: '1623 Farnam', color: 'text-white' },
+                    { label: 'Key Route', value: '144th & Ida', color: 'text-slate-400' }
+                ]
+            },
+            'case-studies': {
+                id: 'case-studies',
+                title: 'Proven Solutions',
+                subtitle: 'Aerospace & Hospitality Profiles',
+                placeholder: 'LOAD CASE_STUDIES_CAROUSEL.HTML',
+                stats: [
+                    { label: 'Delivery', value: 'Fast Turn-Up', color: 'text-gpc-orange' },
+                    { label: 'Connection', value: '100% Fiber', color: 'text-gpc-green' }
+                ]
+            }
+        };
+
+        const navOrder = ['national', 'layer2', 'nebraska', 'omaha-metro', 'case-studies'];
+        let currentActive = 'national';
+
+        // --- INITIALIZATION ---
+        function init() {
+            buildNavigation();
+            updateView('national');
+            startClock();
+        }
+
+        // --- DOM MANIPULATION ---
+        function buildNavigation() {
+            const navContainer = document.getElementById('nav-menu');
+            navContainer.innerHTML = '';
+
+            navOrder.forEach((key, index) => {
+                const data = mapData[key];
+                const btnNum = index + 1; // Maps to physical buttons 1-5
+                
+                const btnHTML = `
+                    <button id="nav-btn-${key}" onclick="updateView('${key}')" class="w-full text-left p-4 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-700 transition-all group relative overflow-hidden">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-slate-500 transition-colors" id="indicator-${key}"></div>
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-[10px] font-bold tracking-widest uppercase text-slate-500">View 0${btnNum}</span>
+                            <span class="text-[10px] font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-700 text-slate-400">BTN ${btnNum}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-200 group-hover:text-white">${data.title}</h3>
+                    </button>
+                `;
+                navContainer.insertAdjacentHTML('beforeend', btnHTML);
+            });
+        }
+
+        function updateView(viewId) {
+            const data = mapData[viewId];
+            if (!data) return;
+
+            // Reset UI states
+            navOrder.forEach(key => {
+                const btn = document.getElementById(`nav-btn-${key}`);
+                const indicator = document.getElementById(`indicator-${key}`);
+                btn.classList.remove('bg-slate-800', 'glow-active');
+                btn.classList.add('bg-slate-800/50');
+                indicator.classList.remove('bg-gpc-green');
+            });
+
+            // Set Active State
+            const activeBtn = document.getElementById(`nav-btn-${viewId}`);
+            const activeIndicator = document.getElementById(`indicator-${viewId}`);
+            activeBtn.classList.remove('bg-slate-800/50');
+            activeBtn.classList.add('bg-slate-800', 'glow-active');
+            activeIndicator.classList.add('bg-gpc-green');
+
+            // Update Header (with fade animation reset)
+            const titleEl = document.getElementById('view-title');
+            const subtitleEl = document.getElementById('view-subtitle');
+            
+            titleEl.classList.remove('fade-in');
+            subtitleEl.classList.remove('fade-in');
+            void titleEl.offsetWidth; // trigger reflow
+            
+            titleEl.innerText = data.title;
+            subtitleEl.innerText = data.subtitle;
+            
+            titleEl.classList.add('fade-in');
+            subtitleEl.classList.add('fade-in');
+
+            // Update Stats
+            const statsContainer = document.getElementById('stats-container');
+            statsContainer.innerHTML = '';
+            data.stats.forEach(stat => {
+                statsContainer.innerHTML += `
+                    <div class="flex flex-col items-end">
+                        <span class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-0.5">${stat.label}</span>
+                        <span class="text-xl font-black ${stat.color}">${stat.value}</span>
+                    </div>
+                `;
+            });
+
+            // Update Visualizer Placeholder
+            document.getElementById('placeholder-text').innerText = data.placeholder;
+            
+            // Note for actual implementation: 
+            // document.getElementById('map-visualizer').style.backgroundImage = `url('assets/maps/${viewId}.svg')`;
+
+            currentActive = viewId;
+        }
+
+        function toggleLayer(layerName) {
+            // Future logic for SVG path manipulation
+            console.log(`Toggling layer: ${layerName}`);
+            // Example: document.querySelectorAll('.layer-400g').forEach(el => el.classList.toggle('hidden'));
+        }
+
+        // --- HARDWARE INTEGRATION ---
+        // Listens for numbers 1-5 (Mapped to your physical GPIO buttons via uinput)
+        window.addEventListener('keydown', (e) => {
+            const keyMap = {
+                '1': 'national',
+                '2': 'layer2',
+                '3': 'nebraska',
+                '4': 'omaha-metro',
+                '5': 'case-studies'
+            };
+            
+            if (keyMap[e.key]) {
+                updateView(keyMap[e.key]);
+                
+                // Add a brief visual flash to the screen edge to confirm hardware button press
+                const body = document.body;
+                body.style.boxShadow = 'inset 0 0 50px rgba(132, 204, 22, 0.2)';
+                setTimeout(() => body.style.boxShadow = 'none', 200);
+            }
+        });
+
+        // --- UTILS ---
+        function startClock() {
+            setInterval(() => {
+                document.getElementById('clock').innerText = new Date().toLocaleTimeString('en-US', { hour12: false });
+            }, 1000);
+        }
+
+        // Run on load
+        window.onload = init;
+    </script>
+</body>
+</html>

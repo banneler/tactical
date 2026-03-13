@@ -214,20 +214,21 @@
             }
         }
 
-        // --- DOM MANIPULATION ---
+   // --- DOM MANIPULATION ---
         function buildNavigation() {
             const nav = document.getElementById('nav-menu');
             nav.innerHTML = '';
             navOrder.forEach((key, i) => {
                 const btnNum = i + 1;
                 const isGuest = key === 'guest';
+                
                 nav.innerHTML += `
-                    <button id="nav-btn-${key}" onclick="updateView('${key}')" class="w-full text-left px-5 py-4 rounded-lg border-l-4 border-transparent hover:bg-white/5 transition-all group relative flex flex-col justify-center min-h-[80px] ${isGuest ? 'bg-white/5 border-l-gpc-blue' : ''}">
-                        <div class="flex items-center justify-between mb-1 w-full">
-                            <span class="text-[10px] font-bold tracking-widest uppercase text-slate-400 group-hover:text-slate-300">${isGuest ? 'CUSTOM BRIEFING' : ''}</span>
-                            <div class="w-6 h-6 rounded-full border border-slate-600 flex items-center justify-center text-[10px] text-slate-400 group-hover:border-slate-400 group-hover:text-slate-300 font-semibold ml-auto">${btnNum}</div>
+                    <button id="nav-btn-${key}" onclick="updateView('${key}')" class="w-full text-left px-5 py-4 rounded-lg border-l-4 border-transparent hover:bg-white/5 transition-all group flex items-center justify-between min-h-[64px] ${isGuest ? 'bg-white/5 border-l-gpc-blue' : ''}">
+                        <div class="flex flex-col pr-3 overflow-hidden">
+                            ${isGuest ? '<span class="text-[10px] font-bold tracking-widest uppercase text-gpc-orange mb-1">Custom Briefing</span>' : ''}
+                            <h3 class="text-base font-semibold text-slate-200 group-hover:text-white truncate ${isGuest ? 'text-white' : ''}">${mapData[key].title}</h3>
                         </div>
-                        <h3 class="text-base font-semibold text-slate-200 group-hover:text-white truncate ${isGuest ? 'text-gpc-orange' : ''}">${mapData[key].title}</h3>
+                        <div class="w-7 h-7 shrink-0 rounded-full border border-slate-600 flex items-center justify-center text-[10px] text-slate-400 group-hover:border-slate-300 group-hover:text-slate-200 font-semibold shadow-sm">${btnNum}</div>
                     </button>
                 `;
             });
@@ -314,25 +315,26 @@
                 html += '</div>';
             }
             else if (viewId === 'why-gpc' && pageContent['why-gpc']) {
+                // Scaled up to max-w-6xl, larger text, larger icons, wider gaps
                 html += `
-                    <div class="flex flex-col w-full h-full max-w-5xl mx-auto fade-in pt-4">
-                        <div class="mb-12 border-b border-slate-200 pb-8 text-center">
-                            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-light">
+                    <div class="flex flex-col w-full h-full max-w-6xl mx-auto fade-in pt-8">
+                        <div class="mb-16 border-b border-slate-200 pb-10 text-center">
+                            <p class="text-2xl text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
                                 ${pageContent['why-gpc'].intro}
                             </p>
                         </div>
-                        <div class="grid grid-cols-2 gap-x-16 gap-y-10 flex-1 content-start">
+                        <div class="grid grid-cols-2 gap-x-24 gap-y-16 flex-1 content-start px-8">
                 `;
                 
                 pageContent['why-gpc'].pillars.forEach(p => {
                     html += `
-                        <div class="flex gap-5 items-start">
-                            <div class="bg-gpc-green/10 p-3.5 rounded-full text-gpc-green shrink-0">
-                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${p.icon}"></path></svg>
+                        <div class="flex gap-6 items-start group cursor-default">
+                            <div class="bg-gpc-green/10 p-5 rounded-full text-gpc-green shrink-0 group-hover:bg-gpc-green group-hover:text-white transition-colors duration-300 shadow-sm">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${p.icon}"></path></svg>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-slate-800 mb-2">${p.title}</h3>
-                                <p class="text-sm text-slate-500 leading-relaxed">${p.desc}</p>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-3">${p.title}</h3>
+                                <p class="text-lg text-slate-500 leading-relaxed">${p.desc}</p>
                             </div>
                         </div>
                     `;

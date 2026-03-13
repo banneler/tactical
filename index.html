@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPC Executive Map Display - Pro Complete</title>
+    <link rel="icon" href="data:,">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -275,8 +276,6 @@
             navOrder.forEach((key, i) => {
                 const btnNum = i + 1;
                 const isGuest = key === 'guest';
-                // Remove cite tags for cleaner nav labels
-                const cleanTitle = mapData[key].title.replace(/ \/g, '');
                 
                 nav.innerHTML += `
                     <button id="nav-btn-${key}" onclick="updateView('${key}')" class="w-full text-left px-5 py-4 rounded-lg border-l-4 border-transparent hover:bg-white/5 transition-all group relative ${isGuest ? 'bg-white/5 border-l-gpc-blue' : ''}">
@@ -284,7 +283,7 @@
                             <span class="text-[10px] font-bold tracking-widest uppercase text-slate-400 group-hover:text-slate-300">${isGuest ? 'CUSTOM BRIEFING' : `Section 0${btnNum}`}</span>
                             <div class="w-6 h-6 rounded-full border border-slate-600 flex items-center justify-center text-[10px] text-slate-400 group-hover:border-slate-400 group-hover:text-slate-300">${btnNum}</div>
                         </div>
-                        <h3 class="text-base font-medium text-slate-200 group-hover:text-white truncate ${isGuest ? 'text-gpc-orange' : ''}">${cleanTitle}</h3>
+                        <h3 class="text-base font-medium text-slate-200 group-hover:text-white truncate ${isGuest ? 'text-gpc-orange' : ''}">${mapData[key].title}</h3>
                     </button>
                 `;
             });
@@ -300,15 +299,15 @@
             void title.offsetWidth; // reflow
             
             // Render text
-            title.innerText = mapData[viewId].title.replace(/ \/g, ''); 
-            sub.innerText = mapData[viewId].subtitle.replace(/ \/g, '');
+            title.innerText = mapData[viewId].title; 
+            sub.innerText = mapData[viewId].subtitle;
             
             title.classList.add('fade-in'); sub.classList.add('fade-in');
 
             const stats = document.getElementById('stats-container');
             stats.innerHTML = '';
             mapData[viewId].stats.forEach(s => {
-                stats.innerHTML += `<div class="flex flex-col items-start border-l border-slate-200 pl-6"><span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">${s.label.replace(/ \/g, '')}</span><span class="text-2xl font-bold ${s.color}">${s.value.replace(/ \/g, '')}</span></div>`;
+                stats.innerHTML += `<div class="flex flex-col items-start border-l border-slate-200 pl-6"><span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">${s.label}</span><span class="text-2xl font-bold ${s.color}">${s.value}</span></div>`;
             });
             document.getElementById('placeholder-text').innerText = mapData[viewId].placeholder;
         }

@@ -38,7 +38,7 @@
         /* Screensaver Animation */
         .ken-burns { animation: panZoom 30s infinite alternate linear; }
         @keyframes panZoom { 0% { transform: scale(1) translate(0, 0); } 100% { transform: scale(1.1) translate(-2%, -2%); } }
-        /* Add this under your ken-burns animation */
+        /* Animated Background Grid */
         @keyframes gridMove {
             0% { transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px); }
             100% { transform: perspective(500px) rotateX(60deg) translateY(0px) translateZ(-200px); }
@@ -52,38 +52,38 @@
         <div class="absolute inset-0 opacity-20 ken-burns" style="background-image: radial-gradient(circle at center, #1E40AF 0%, transparent 70%);"></div>
         <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 20s linear infinite;"></div>
 
-        <div class="relative z-10 flex flex-col items-center text-center w-full max-w-6xl px-8">
+        <div class="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-7xl px-8 flex-1">
             
-            <img src="GPC-White-1-1.webp" alt="Great Plains Communications" class="h-32 md:h-40 w-auto object-contain fade-in mb-6 drop-shadow-2xl">
+            <img src="GPC-White-1-1.webp" alt="Great Plains Communications" class="h-40 md:h-48 w-auto object-contain fade-in mb-8 drop-shadow-2xl">
             
-            <h2 class="text-xl md:text-2xl font-light text-slate-300 tracking-wide mb-16 fade-in drop-shadow" style="animation-delay: 0.2s;">
-                Fiber Connectivity and Communications Solutions for the Modern Business [cite: 484]
+            <h2 class="text-2xl md:text-3xl font-light text-slate-300 tracking-wide mb-20 fade-in drop-shadow" style="animation-delay: 0.2s;">
+                Fiber Connectivity and Communications Solutions for the Modern Business
             </h2>
             
-            <div class="grid grid-cols-3 gap-x-20 gap-y-12 fade-in" style="animation-delay: 0.4s;">
-                <div class="text-center">
-                    <span class="block text-6xl font-bold text-gpc-green mb-3 drop-shadow-md">19,000+</span>
-                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Fiber Miles [cite: 9, 10]</span>
+            <div class="grid grid-cols-3 gap-x-24 gap-y-16 fade-in w-full justify-items-center" style="animation-delay: 0.4s;">
+                <div class="text-center w-full">
+                    <span class="block text-6xl font-bold text-gpc-green mb-4 drop-shadow-md">19,000+</span>
+                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Fiber Miles</span>
                 </div>
-                <div class="text-center">
-                    <span class="block text-6xl font-bold text-white mb-3 drop-shadow-md">13</span>
-                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">States Served [cite: 8]</span>
+                <div class="text-center w-full">
+                    <span class="block text-6xl font-bold text-white mb-4 drop-shadow-md">13</span>
+                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">States Served</span>
                 </div>
-                <div class="text-center">
-                    <span class="block text-6xl font-bold text-gpc-orange mb-3 drop-shadow-md">400G</span>
-                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Standard Capacity [cite: 12, 13]</span>
+                <div class="text-center w-full">
+                    <span class="block text-6xl font-bold text-gpc-orange mb-4 drop-shadow-md">400G</span>
+                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Standard Capacity</span>
                 </div>
-                <div class="text-center">
-                    <span class="block text-6xl font-bold text-gpc-blue mb-3 drop-shadow-md">25+</span>
-                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Data Centers [cite: 14, 16]</span>
+                <div class="text-center w-full">
+                    <span class="block text-6xl font-bold text-gpc-blue mb-4 drop-shadow-md">25+</span>
+                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Data Centers</span>
                 </div>
-                <div class="text-center">
-                    <span class="block text-6xl font-bold text-white mb-3 drop-shadow-md">100+</span>
-                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Years Experience [cite: 495]</span>
+                <div class="text-center w-full">
+                    <span class="block text-6xl font-bold text-white mb-4 drop-shadow-md">100+</span>
+                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Years Experience</span>
                 </div>
-                <div class="text-center">
-                    <span class="block text-6xl font-bold text-gpc-green mb-3 drop-shadow-md">24/7</span>
-                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Network Monitoring [cite: 493]</span>
+                <div class="text-center w-full">
+                    <span class="block text-6xl font-bold text-gpc-green mb-4 drop-shadow-md">24/7</span>
+                    <span class="text-slate-400 uppercase tracking-widest text-sm font-semibold">Network Monitoring</span>
                 </div>
             </div>
         </div>
@@ -123,8 +123,8 @@
 
     <aside class="w-80 bg-gpc-navy flex flex-col z-20 shadow-floating relative shrink-0">
         <div class="p-8 pb-6 cursor-pointer" id="brand-trigger">
-            <img src="GPC-White-1-1.webp" alt="GPC Logo" class="h-16 w-auto object-contain mb-6 drop-shadow-lg transition-transform hover:scale-105">
-            <div class="w-12 h-1 bg-gpc-blue rounded-full"></div>
+            <img src="GPC-White-1-1.webp" alt="GPC Logo" class="h-24 w-auto object-contain mb-6 drop-shadow-lg transition-transform hover:scale-105">
+            <div class="w-16 h-1.5 bg-gpc-blue rounded-full"></div>
         </div>
 
         <nav class="flex-1 px-4 py-2 flex flex-col gap-2 overflow-y-auto" id="nav-menu"></nav>
@@ -296,7 +296,6 @@
         function checkClientGreeting() {
             const savedClient = localStorage.getItem('gpc-client');
             if (savedClient) {
-                // Dynamically build the custom view
                 mapData['guest'] = {
                     title: `Welcome, ${savedClient}`,
                     subtitle: 'Strategic Partnership Briefing',
@@ -342,7 +341,6 @@
             title.classList.remove('fade-in'); sub.classList.remove('fade-in');
             void title.offsetWidth; // reflow
             
-            // Render text
             title.innerText = mapData[viewId].title; 
             sub.innerText = mapData[viewId].subtitle;
             
@@ -362,18 +360,16 @@
         let isDrawing = false, drawMode = false;
 
         function setupCanvas() {
-            // Resize canvas to match the container
             const resize = () => {
                 canvas.width = canvas.parentElement.clientWidth;
                 canvas.height = canvas.parentElement.clientHeight;
                 ctx.lineWidth = 6;
                 ctx.lineCap = 'round';
-                ctx.strokeStyle = '#EA580C'; // GPC Orange Ink
+                ctx.strokeStyle = '#EA580C';
             };
             window.addEventListener('resize', resize);
             resize();
 
-            // Mouse & Touch Events
             const startPos = (e) => {
                 isDrawing = true;
                 ctx.beginPath();
@@ -384,7 +380,7 @@
             };
             const draw = (e) => {
                 if (!isDrawing) return;
-                e.preventDefault(); // Stop scrolling while drawing
+                e.preventDefault();
                 const rect = canvas.getBoundingClientRect();
                 const x = e.touches ? e.touches[0].clientX - rect.left : e.clientX - rect.left;
                 const y = e.touches ? e.touches[0].clientY - rect.top : e.clientY - rect.top;
@@ -416,16 +412,14 @@
         let idleTime = 0;
         function setupScreensaver() {
             const ss = document.getElementById('screensaver');
-            // Check every second
             setInterval(() => {
                 idleTime++;
-                if (idleTime > 60) { // 60 seconds
+                if (idleTime > 60) {
                     ss.classList.remove('hidden');
                     setTimeout(() => ss.classList.add('opacity-100'), 50);
                 }
             }, 1000);
 
-            // Reset timer on any interaction
             const resetTimer = () => {
                 idleTime = 0;
                 if (!ss.classList.contains('hidden')) {
@@ -475,7 +469,7 @@
             const val = document.getElementById('client-name-input').value.trim();
             if (val) {
                 localStorage.setItem('gpc-client', val);
-                init(); // Rebuild with new data
+                init(); 
                 updateView('guest');
                 closeAdmin();
             }

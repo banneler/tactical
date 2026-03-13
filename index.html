@@ -44,8 +44,8 @@
         <h1 class="text-6xl font-light tracking-tight text-white mb-4 z-10 fade-in">GREAT PLAINS</h1>
         <h2 class="text-2xl font-bold tracking-widest text-gpc-orange uppercase z-10 fade-in" style="animation-delay: 0.2s;">Communications</h2>
         <div class="mt-12 flex gap-12 z-10 fade-in" style="animation-delay: 0.4s;">
-            <div class="text-center"><span class="block text-4xl font-bold text-gpc-green mb-2">19,000+ [cite: 73]</span><span class="text-slate-400 uppercase tracking-widest text-sm">Fiber Miles</span></div>
-            <div class="text-center"><span class="block text-4xl font-bold text-white mb-2">100+ [cite: 495]</span><span class="text-slate-400 uppercase tracking-widest text-sm">Years Experience</span></div>
+            <div class="text-center"><span class="block text-4xl font-bold text-gpc-green mb-2">19,000+</span><span class="text-slate-400 uppercase tracking-widest text-sm">Fiber Miles</span></div>
+            <div class="text-center"><span class="block text-4xl font-bold text-white mb-2">100+</span><span class="text-slate-400 uppercase tracking-widest text-sm">Years Experience</span></div>
         </div>
         <p class="absolute bottom-10 text-slate-500 font-mono text-sm tracking-widest animate-pulse z-10">TOUCH SCREEN TO BEGIN</p>
     </div>
@@ -85,7 +85,7 @@
         <nav class="flex-1 px-4 py-2 flex flex-col gap-2 overflow-y-auto" id="nav-menu"></nav>
 
         <div class="p-6 text-sm text-slate-400 font-light border-t border-slate-700/50 flex justify-between items-center">
-            <span>Unified Reach</span>
+            <span>GPC Enterprise</span>
             <span id="clock" class="text-slate-300 font-medium">00:00</span>
         </div>
     </aside>
@@ -144,90 +144,90 @@
         let mapData = {
             'national': {
                 id: 'national',
-                title: 'The Network [cite: 2, 3]',
-                subtitle: 'National Footprint & Coverages [cite: 4]',
+                title: 'The Network',
+                subtitle: 'National Footprint & Coverages',
                 placeholder: 'National Map Active',
                 stats: [
-                    { label: 'Fiber Miles', value: '19,000+ [cite: 73]', color: 'text-gpc-green' },
-                    { label: 'States Served', value: '13 [cite: 8]', color: 'text-slate-900' },
-                    { label: 'Data Centers', value: '25+ [cite: 14]', color: 'text-gpc-blue' },
-                    { label: 'Capacity', value: '400 Gbps [cite: 12]', color: 'text-gpc-orange' }
+                    { label: 'Fiber Miles', value: '19,000+', color: 'text-gpc-green' },
+                    { label: 'States Served', value: '13', color: 'text-slate-900' },
+                    { label: 'Data Centers', value: '25+', color: 'text-gpc-blue' },
+                    { label: 'Capacity', value: '400 Gbps', color: 'text-gpc-orange' }
                 ]
             },
             'layer2': {
                 id: 'layer2',
-                title: 'Layer 2 Core [cite: 119]',
-                subtitle: 'High-Availability Redundant Architecture [cite: 120]',
+                title: 'Layer 2 Core',
+                subtitle: 'High-Availability Redundant Architecture',
                 placeholder: 'Layer 2 Rings Active',
                 stats: [
-                    { label: 'Architecture', value: 'Redundant Ring [cite: 120]', color: 'text-gpc-green' },
-                    { label: 'City-to-City', value: '200G/400G [cite: 120]', color: 'text-gpc-orange' },
-                    { label: 'Scalability', value: '10/100/100G [cite: 120]', color: 'text-slate-900' }
+                    { label: 'Architecture', value: 'Redundant Ring', color: 'text-gpc-green' },
+                    { label: 'City-to-City', value: '200G/400G', color: 'text-gpc-orange' },
+                    { label: 'Scalability', value: '10/100/100G', color: 'text-slate-900' }
                 ]
             },
             'ip-network': {
                 id: 'ip-network',
-                title: 'IP Network & Peering [cite: 543]',
-                subtitle: 'Connected and Resilient Cloud Access [cite: 543]',
+                title: 'IP Network & Peering',
+                subtitle: 'Connected and Resilient Cloud Access',
                 placeholder: 'IP Network Map Active',
                 stats: [
-                    { label: 'Connections', value: 'Tier-1 Providers [cite: 544]', color: 'text-gpc-blue' },
-                    { label: 'Exchanges', value: 'Major IXs [cite: 544]', color: 'text-gpc-orange' },
-                    { label: 'Routing', value: 'Lowest-Latency [cite: 544]', color: 'text-gpc-green' }
+                    { label: 'Connections', value: 'Tier-1 Providers', color: 'text-gpc-blue' },
+                    { label: 'Exchanges', value: 'Major IXs', color: 'text-gpc-orange' },
+                    { label: 'Routing', value: 'Lowest-Latency', color: 'text-gpc-green' }
                 ]
             },
             'nebraska': {
                 id: 'nebraska',
-                title: 'Nebraska Market [cite: 200]',
-                subtitle: 'Statewide Infrastructure Detail [cite: 201]',
+                title: 'Nebraska Market',
+                subtitle: 'Statewide Infrastructure Detail',
                 placeholder: 'Nebraska Detail Active',
                 stats: [
-                    { label: 'State Fiber Miles', value: '10,000+ [cite: 201]', color: 'text-gpc-green' },
-                    { label: 'Communities Served', value: '163 [cite: 202]', color: 'text-slate-900' },
-                    { label: 'Omaha Metro', value: '500+ Miles [cite: 203]', color: 'text-gpc-blue' }
+                    { label: 'State Fiber Miles', value: '10,000+', color: 'text-gpc-green' },
+                    { label: 'Communities Served', value: '163', color: 'text-slate-900' },
+                    { label: 'Omaha Metro', value: '500+ Miles', color: 'text-gpc-blue' }
                 ]
             },
             'omaha-metro': {
                 id: 'omaha-metro',
-                title: 'Omaha / Council Bluffs [cite: 223]',
-                subtitle: 'Metro Area Street Level Routing [cite: 223]',
+                title: 'Omaha / Council Bluffs',
+                subtitle: 'Metro Area Street Level Routing',
                 placeholder: 'Omaha Metro Active',
                 stats: [
-                    { label: 'Advantage', value: 'Unique Bypass Routes [cite: 204]', color: 'text-gpc-green' },
-                    { label: 'Key Data Center', value: '1623 Farnam [cite: 113]', color: 'text-slate-900' }
+                    { label: 'Advantage', value: 'Unique Bypass Routes', color: 'text-gpc-green' },
+                    { label: 'Key Data Center', value: '1623 Farnam', color: 'text-slate-900' }
                 ]
             },
             'products': {
                 id: 'products',
-                title: 'Product Portfolio [cite: 453]',
-                subtitle: 'Fiber-Driven Enterprise Services [cite: 450]',
+                title: 'Product Portfolio',
+                subtitle: 'Fiber-Driven Enterprise Services',
                 placeholder: 'Product List Active',
                 stats: [
-                    { label: 'Core', value: 'Fiber Internet [cite: 456]', color: 'text-gpc-green' },
-                    { label: 'Security', value: 'Managed Firewall [cite: 460]', color: 'text-gpc-orange' },
-                    { label: 'Network', value: 'SD-WAN [cite: 458]', color: 'text-gpc-blue' },
-                    { label: 'Performance', value: 'Cloud Connect [cite: 474]', color: 'text-slate-900' }
+                    { label: 'Core', value: 'Fiber Internet', color: 'text-gpc-green' },
+                    { label: 'Security', value: 'Managed Firewall', color: 'text-gpc-orange' },
+                    { label: 'Network', value: 'SD-WAN', color: 'text-gpc-blue' },
+                    { label: 'Performance', value: 'Cloud Connect', color: 'text-slate-900' }
                 ]
             },
             'why-gpc': {
                 id: 'why-gpc',
-                title: 'The GPC Advantage [cite: 5]',
-                subtitle: 'Partner with Experience [cite: 486]',
+                title: 'The GPC Advantage',
+                subtitle: 'Partner with Experience',
                 placeholder: 'Why Businesses Choose GPC Active',
                 stats: [
-                    { label: 'Experience', value: '100+ Years [cite: 496]', color: 'text-slate-900' },
-                    { label: 'Support', value: 'Unmatched Local [cite: 491]', color: 'text-gpc-blue' },
-                    { label: 'Reliability', value: '24/7 Monitoring [cite: 493]', color: 'text-gpc-green' }
+                    { label: 'Experience', value: '100+ Years', color: 'text-slate-900' },
+                    { label: 'Support', value: 'Unmatched Local', color: 'text-gpc-blue' },
+                    { label: 'Reliability', value: '24/7 Monitoring', color: 'text-gpc-green' }
                 ]
             },
             'case-studies': {
                 id: 'case-studies',
-                title: 'Client Success [cite: 285]',
-                subtitle: 'Aerospace & Hospitality Profiles [cite: 287, 276]',
+                title: 'Client Success',
+                subtitle: 'Aerospace & Hospitality Profiles',
                 placeholder: 'Case Studies Carousel Active',
                 stats: [
-                    { label: 'Delivery Timeline', value: 'Fast Turn-Up [cite: 286]', color: 'text-gpc-orange' },
-                    { label: 'Connection Type', value: '100% Fiber [cite: 275]', color: 'text-gpc-green' }
+                    { label: 'Delivery Timeline', value: 'Fast Turn-Up', color: 'text-gpc-orange' },
+                    { label: 'Connection Type', value: '100% Fiber', color: 'text-gpc-green' }
                 ]
             }
         };
@@ -254,7 +254,7 @@
                 // Dynamically build the custom view
                 mapData['guest'] = {
                     title: `Welcome, ${savedClient}`,
-                    subtitle: 'Unified Reach Partnership Briefing',
+                    subtitle: 'Strategic Partnership Briefing',
                     placeholder: `Custom Presentation for ${savedClient} Active`,
                     stats: [
                         { label: 'Strategic Partner', value: savedClient, color: 'text-gpc-blue' },

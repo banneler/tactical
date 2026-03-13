@@ -21,7 +21,6 @@
       "title": "The Network",
       "subtitle": "National Footprint & Coverages",
       "placeholder": "Load National_Map.svg",
-      "file": "National_Map.png",
       "type": "map",
       "stats": [
         { "label": "Fiber Miles", "value": "20,000+", "color": "text-gpc-green" },
@@ -34,8 +33,8 @@
       "title": "Layer 2 Core",
       "subtitle": "High-Availability Redundant Architecture",
       "placeholder": "Load Layer_2_Rings.svg",
-      "file": "Layer_2_Rings.png",
       "type": "map",
+      "insight": "Our high-availability network is engineered to meet the mission-critical demands of enterprises, wholesale clients, and FTTT customers, offering 200G and 400G city-to-city routes, a redundant ring architecture and seamless scalability across 1G, 10G, and 100G services.",
       "stats": [
         { "label": "Architecture", "value": "Redundant Ring", "color": "text-gpc-green" },
         { "label": "City-to-City", "value": "200G/400G", "color": "text-gpc-orange" }

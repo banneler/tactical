@@ -17,7 +17,7 @@
       "placeholder": "Load National_Map.svg",
       "type": "map",
       "stats": [
-        { "label": "Fiber Miles", "value": "19,000+", "color": "text-gpc-green" },
+        { "label": "Fiber Miles", "value": "20,000+", "color": "text-gpc-green" },
         { "label": "States Served", "value": "13", "color": "text-slate-900" },
         { "label": "Data Centers", "value": "25+", "color": "text-gpc-blue" }
       ]
@@ -127,7 +127,7 @@
         "icon": "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
       },
       {
-        "title": "Wireless Backup",
+        "title": "5G Wireless Internet",
         "desc": "Keep your business running during outages with automatic failover, professional setup and 24/7 support.",
         "icon": "M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
       },
@@ -145,11 +145,6 @@
         "title": "Cloud Connect",
         "desc": "Ensure high performance with secure, reliable and direct connections to leading Cloud providers.",
         "icon": "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
-      },
-      {
-        "title": "Video",
-        "desc": "Enhance your customers' experience with TV plans that deliver essential news, sports and entertainment.",
-        "icon": "M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347c-.75.412-1.667-.13-1.667-.986V5.653z"
       }
     ],
     "why-gpc": {

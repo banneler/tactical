@@ -3,8 +3,13 @@
     "national",
     "layer2",
     "ip-network",
+    "towers",
     "nebraska",
     "omaha-metro",
+    "indiana",
+    "illinois",
+    "minnesota",
+    "colorado-wyoming",
     "data-centers",
     "products",
     "why-gpc",
@@ -45,6 +50,17 @@
         { "label": "Exchanges", "value": "Major IXs", "color": "text-gpc-orange" }
       ]
     },
+    "towers": {
+      "id": "towers",
+      "title": "Fiber to the Tower",
+      "subtitle": "Fast & Reliable Wireless Backhaul",
+      "placeholder": "Load Towers_Map.svg",
+      "type": "map",
+      "stats": [
+        { "label": "Total Towers", "value": "650+", "color": "text-gpc-orange" },
+        { "label": "States Served", "value": "13", "color": "text-slate-900" }
+      ]
+    },
     "nebraska": {
       "id": "nebraska",
       "title": "Nebraska Market",
@@ -53,7 +69,7 @@
       "type": "map",
       "stats": [
         { "label": "State Fiber Miles", "value": "10,000+", "color": "text-gpc-green" },
-        { "label": "Communities Served", "value": "163", "color": "text-slate-900" }
+        { "label": "Communities", "value": "163", "color": "text-slate-900" }
       ]
     },
     "omaha-metro": {
@@ -63,8 +79,53 @@
       "placeholder": "Load Omaha_Metro.svg",
       "type": "map",
       "stats": [
-        { "label": "Advantage", "value": "Unique Bypass Routes", "color": "text-gpc-green" },
-        { "label": "Key Data Center", "value": "1623 Farnam", "color": "text-slate-900" }
+        { "label": "Advantage", "value": "Unique Bypass", "color": "text-gpc-green" },
+        { "label": "Metro Miles", "value": "500+", "color": "text-gpc-blue" }
+      ]
+    },
+    "indiana": {
+      "id": "indiana",
+      "title": "Indiana Market",
+      "subtitle": "Southeastern Indiana Detail",
+      "placeholder": "Load Indiana_Map.svg",
+      "type": "map",
+      "stats": [
+        { "label": "State Fiber Miles", "value": "3,000", "color": "text-gpc-green" },
+        { "label": "Communities", "value": "32", "color": "text-slate-900" },
+        { "label": "Data Centers", "value": "3", "color": "text-gpc-blue" }
+      ]
+    },
+    "illinois": {
+      "id": "illinois",
+      "title": "Illinois Market",
+      "subtitle": "Chicago Metro & State Infrastructure",
+      "placeholder": "Load Illinois_Map.svg",
+      "type": "map",
+      "stats": [
+        { "label": "State Fiber Miles", "value": "1,800+", "color": "text-gpc-green" },
+        { "label": "Chicago DCs", "value": "4", "color": "text-gpc-blue" }
+      ]
+    },
+    "minnesota": {
+      "id": "minnesota",
+      "title": "Minnesota Market",
+      "subtitle": "State Infrastructure Detail",
+      "placeholder": "Load Minnesota_Map.svg",
+      "type": "map",
+      "stats": [
+        { "label": "State Fiber Miles", "value": "900+", "color": "text-gpc-green" },
+        { "label": "Key Hub", "value": "Minneapolis", "color": "text-slate-900" }
+      ]
+    },
+    "colorado-wyoming": {
+      "id": "colorado-wyoming",
+      "title": "Colorado & Wyoming",
+      "subtitle": "Western Expansion Routing",
+      "placeholder": "Load CO_WY_Map.svg",
+      "type": "map",
+      "stats": [
+        { "label": "Regional Miles", "value": "1,000+", "color": "text-gpc-green" },
+        { "label": "Key Hubs", "value": "Denver/Cheyenne", "color": "text-slate-900" }
       ]
     },
     "data-centers": {
@@ -112,15 +173,33 @@
   },
   "pageContent": {
     "data-centers": [
-      { "city": "Omaha, NE", "name": "1623 Farnam" },
-      { "city": "Omaha, NE", "name": "GPC Omaha Core" },
+      { "city": "Denver, CO", "name": "910 Telecom" },
+      { "city": "Denver, CO", "name": "Coresite" },
+      { "city": "Denver, CO", "name": "Champa" },
+      { "city": "Des Moines, IA", "name": "Connect Des Moines" },
+      { "city": "Sioux City, IA", "name": "Long Lines WIT" },
+      { "city": "Sioux City, IA", "name": "FiberComm" },
+      { "city": "Davenport, IA", "name": "South Front" },
+      { "city": "Chicago, IL", "name": "Digital Realty Federal" },
+      { "city": "Chicago, IL", "name": "Digital Realty Cermak" },
+      { "city": "Chicago, IL", "name": "Equinix Cermak" },
+      { "city": "Chicago, IL", "name": "Coresite" },
+      { "city": "Minneapolis, MN", "name": "Cologix Minneapolis" },
+      { "city": "Kansas City, MO", "name": "Netrality KC" },
+      { "city": "St. Louis, MO", "name": "Netrality St. Louis" },
+      { "city": "Bellevue, NE", "name": "TierPoint-Bellevue" },
+      { "city": "Bellevue, NE", "name": "Offutt AFB" },
+      { "city": "Papillion, NE", "name": "TierPoint-Midlands" },
+      { "city": "Papillion, NE", "name": "Light Edge Solutions" },
       { "city": "Lincoln, NE", "name": "Lincoln Edge Facility" },
-      { "city": "Council Bluffs, IA", "name": "CB Interconnect" },
-      { "city": "Des Moines, IA", "name": "Des Moines Hub" },
-      { "city": "Kansas City, MO", "name": "KC Regional Center" },
-      { "city": "Chicago, IL", "name": "Chicago Peering Exchange" },
-      { "city": "Denver, CO", "name": "Denver West Core" },
-      { "city": "Minneapolis, MN", "name": "North Interconnect" }
+      { "city": "Omaha, NE", "name": "1623 Farnam" },
+      { "city": "Omaha, NE", "name": "Scott Tech" },
+      { "city": "Cincinnati, OH", "name": "CyrusOne" },
+      { "city": "Yankton, SD", "name": "Dataware Green" },
+      { "city": "South Bend, IN", "name": "Union Station Tech" },
+      { "city": "Indianapolis, IN", "name": "GPC Suite-Indy Telecom" },
+      { "city": "Indianapolis, IN", "name": "Lifeline" },
+      { "city": "Cheyenne, WY", "name": "ACT" }
     ],
     "products": [
       {
